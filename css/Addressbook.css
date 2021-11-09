@@ -226,3 +226,30 @@ error-output
     font-size:12px;
     font-style: oblique;
 }
+
+/* adding media queries*/
+@media screen and (max-width:660px)
+{
+    span > img{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+
+    }
+    .form-head
+    {
+        font-size: 25px;
+        padding: 15px ;
+    }
+    .form
+    {
+        width: 85%;
+        padding:44px 20px;
+        margin-top:10px;
+    }
+    #citystatezip
+    {
+        flex-direction: column;
+    }
+}

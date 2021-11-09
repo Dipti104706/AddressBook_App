@@ -70,20 +70,24 @@
                     <div class="column">
                         <label for="Address" class="label-text">Zip Code</label>
                         <input type="text" id="zip" class="zipcode" placeholder="Zip Code">
+                        <error-output class="zip-error" for="Address"></error-output>
                     </div>
                 </div>
           </div>
           <div class="row-content">
             <label for="phone" class="label-text">Phone Number</label>
             <input type="text" id="phone" class="input"placeholder="Enter number">
-            <error-output class="text-error" for="phone"></error-output>
+            <error-output class="phone-error" for="phone"></error-output>
           </div>
           <div class="buttonParent">
                 <div class="submit-reset">
-                    <button type="submit" class="button submitButton">Add</button>
+                    <button type="submit" class="button submitButton" onClick="save()">Add</button>
                     <button type="reset" class="button resetButton">Reset</button>
                 </div>
           </div>
         </form>
     </div>
+    <script src="../js/PersonValidation.js"></script>
+    <script src="../js/AddressBook.js"></script>
 </body>
+</html>
