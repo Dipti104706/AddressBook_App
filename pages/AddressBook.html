@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html data-lt-installed="true">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <!--adding external css-->
+    <link rel="stylesheet" href="../css/Addressbook.css">
+    <title>AddressBook App</title>
+</head>
+<body>
+    <!--adding logo and content-->
+    <header class="header-content">
+        <div class="logo-content">
+            <img src="../assets/address_book_icon.svg" alt="Logo icon">
+            <div>
+                <!--span is a child class for div -->
+                <span class="addr-text">Address</span><br>
+                <span class="addr-text addr-book">Book</span>
+            </div>
+        </div>
+    </header>
+    <div class="form-content">
+        <form>
+          <header class="form-head">Person Address Form
+             <div><img src="../assets/close_icon.svg" class="close-icon"></div>
+          </header>
+
+          <div class="row-content">
+            <label for="name" class="label-text">Full Name</label>
+            <input type="text" id="name" class="input" placeholder=" Your name ..">
+            <error-output class="text-error" for="name"></error-output>
+          </div>
+          <div class="row-content">
+            <label for="Address" class="label-text">Address</label>
+            <textarea type="text" id="Address" class="input-address" placeholder=" Address"></textarea>
+            <error-output class="text-error" for="Address"></error-output>
+          </div>
+
+          <div class="row-content">
+                <div id="citystatezip">
+                    <div class="column">
+                        <label for="Address" class="label-text">City</label>
+                        <select name="City" id="City" class="text">
+                            <option>Select City</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Kolkata">Kolkata</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Pune">Pune</option>
+                            <option value="Lucknow">Lucknow</option>
+                            <option value="Coimbatore">Coimbatore</option>
+                            <option value="Pudukkottai">Pudukkottai</option>
+                        </select>
+                    </div>
+
+                    <div class="column">
+                        <label for="Address" class="label-text">State</label>
+                        <select id="State" name="State" class="text">
+                            <option>Select State</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="West Bengal">West Bengal</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Delhi">Delhi</option>
+                        </select>
+                    </div>
+                    <div class="column">
+                        <label for="Address" class="label-text">Zip Code</label>
+                        <input type="text" id="zip" class="zipcode" placeholder="Zip Code">
+                    </div>
+                </div>
+          </div>
+          <div class="row-content">
+            <label for="phone" class="label-text">Phone Number</label>
+            <input type="text" id="phone" class="input"placeholder="Enter number">
+            <error-output class="text-error" for="phone"></error-output>
+          </div>
+          <div class="buttonParent">
+                <div class="submit-reset">
+                    <button type="submit" class="button submitButton">Add</button>
+                    <button type="reset" class="button resetButton">Reset</button>
+                </div>
+          </div>
+        </form>
+    </div>
+</body>
