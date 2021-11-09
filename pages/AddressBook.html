@@ -42,6 +42,7 @@
                         <label for="Address" class="label-text">City</label>
                         <select name="City" id="City" class="text">
                             <option>Select City</option>
+                            <option value="Bhubaneswar">Bhubaneswar</option>
                             <option value="Mumbai">Mumbai</option>
                             <option value="Bangalore">Bangalore</option>
                             <option value="Kolkata">Kolkata</option>
@@ -49,7 +50,6 @@
                             <option value="Pune">Pune</option>
                             <option value="Lucknow">Lucknow</option>
                             <option value="Coimbatore">Coimbatore</option>
-                            <option value="Pudukkottai">Pudukkottai</option>
                         </select>
                     </div>
 
@@ -57,6 +57,7 @@
                         <label for="Address" class="label-text">State</label>
                         <select id="State" name="State" class="text">
                             <option>Select State</option>
+                            <option value="Odisha">Odisha</option>
                             <option value="Maharashtra">Maharashtra</option>
                             <option value="Karnataka">Karnataka</option>
                             <option value="West Bengal">West Bengal</option>
@@ -64,7 +65,6 @@
                             <option value="Kerala">Kerala</option>
                             <option value="Uttar Pradesh">Uttar Pradesh</option>
                             <option value="Andhra Pradesh">Andhra Pradesh</option>
-                            <option value="Delhi">Delhi</option>
                         </select>
                     </div>
                     <div class="column">
@@ -82,7 +82,7 @@
           <div class="buttonParent">
                 <div class="submit-reset">
                     <button type="submit" class="button submitButton" onClick="save()">Add</button>
-                    <button type="reset" class="button resetButton">Reset</button>
+                    <button type="reset" class="button resetButton" onClick="reset()">Reset</button>
                 </div>
           </div>
         </form>
