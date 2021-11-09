@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html data-lt-installed="true">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <!--adding external css-->
+    <link rel="stylesheet" href="../css/HomePage.css">
+    <title>Address Book App</title>
+</head>
+<body>
+    <!--adding logo and content-->
+    <header class="header-content">
+        <div class="logo-content">
+            <img src="../assets/address_book_icon.svg" width="5%" alt="Logo icon">
+            <div>
+                <!--span is a child class for div -->
+                <span class="addr-text">Address</span><br>
+                <span class="addr-text addr-book">Book</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="header-content">
+            <div class="addrDetail-text">Person Details 
+                <div class="addr-count">10</div>
+            </div>
+            <a href="../pages/AddressBook.html" class="add-button">
+                <img src="../assets/add-24px.svg" alt="add user">Add Person
+            </a>
+        </div>
+        <div class="table-main">
+            <table id="display" class="table">
+            </table>
+        </div>
+    </div>
+    <script src="../js/HomePage.js"></script>
+    <script src="../js/PersonValidation.js"></script>
+    <script src="../js/siteProperties.js"></script>
+</body>
+</html>

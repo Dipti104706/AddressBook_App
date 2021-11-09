@@ -1,3 +1,5 @@
+//Validation for input(name,phone number ,zipcode)
+
 window.addEventListener('DOMContentLoaded',(event)=>
 {
     const name=document.querySelector("#name");

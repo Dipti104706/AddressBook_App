@@ -77,7 +77,7 @@ form
     float: right;
   }
   /* for close icon */
-  .form-head>div>img
+  .form-head>div>a>img
   {
     width: 20px;
     border-radius: 50px;
