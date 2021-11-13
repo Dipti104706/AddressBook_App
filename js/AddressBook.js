@@ -1,5 +1,6 @@
 //Validation for input(name,phone number ,zipcode)
-
+let isUpdate=false;
+let contactObj={};
 window.addEventListener('DOMContentLoaded',(event)=>
 {
     const name=document.querySelector("#name");
@@ -61,37 +62,113 @@ window.addEventListener('DOMContentLoaded',(event)=>
             textZipError.textContent=e;
         }
     });
+    checkForUpdate();
 });
 
+//check for update
+const checkForUpdate=() =>
+{
+  var contactDataJson=localStorage.getItem('editContact');
+  isUpdate=contactDataJson?true: false;
+  if(!isUpdate) return;
+  contactObj=JSON.parse(contactDataJson);
+  setForm();
+}
+//populate 
+const setForm= () =>
+{
+  setValue('#name',contactObj._fullName);
+  setValue('#phone',contactObj._phoneNum);
+  setValue('#Address',contactObj._address);
+  setValue('#City',contactObj._city);
+  setValue('#State',contactObj._state);
+  setValue('#zip',contactObj._zipCode);
+}
 //onclicking the add button (data will be populated in alert box)
 
-const save=()=>
+const save=(event)=>
 {
-  try
-  {
-        let addrBookData=createAddrBook();
-        createAndUpdateStorage(addrBookData);
-  }
-  catch(e)
-  {
+    event.preventDefault();
+    event.stopPropagation();
+    try
+    {
+        setContactDataObject();
+        createAndUpdateStorage();
+        reset();
+        window.location.replace(site_Properties.home_page);
+    }
+    catch(e)
+    {
         return;
-  }
+    }
+}
+const setContactDataObject=()=>{
+  contactObj._fullname=getInputValueById('#name');
+  contactObj._phoneNum = getInputValueById('#phone');
+  contactObj._address = getInputValueById('#Address');
+  contactObj._city=getInputValueById('#City');
+  contactObj._state =getInputValueById('#State');
+  contactObj._zipCode = getInputValueById('#zip');
 }
 //storing in local storage
-function createAndUpdateStorage(addrBookData)
+function createAndUpdateStorage()
 {
-    let addrBookDataList=JSON.parse(localStorage.getItem("AddressBookList"));
-    if(addrBookDataList!=undefined)
+  let addrBookDataList=JSON.parse(localStorage.getItem("AddressBookList"));
+  if(addrBookDataList)
+  {
+    let addrData= addrBookDataList
+        .find(contact => contact._id == contactObj._id);
+    if(!addrData)
     {
-        addrBookDataList.push(addrBookData);
+        addrBookDataList.push(createContactInAddressBook());
     }
     else
     {
-        addrBookDataList=[addrBookData];
+        const index= addrBookDataList.map(contact => contact._id)
+            .indexOf(addrData._id);
+        addrBookDataList.splice(index,1,createContactInAddressBook(addrData._id));
     }
-    alert(addrBookDataList.toString());
-    localStorage.setItem("AddressBookList",JSON.stringify(addrBookDataList));
+ }
+ else
+ {
+    addrBookDataList=[createContactInAddressBook()]
+ }
+ localStorage.setItem("AddressBookList",JSON.stringify(addrBookDataList));
 }
+
+const createContactInAddressBook=(id)=>
+{
+  let addrBookData=new AddressBookData();
+  if(!id) addrBookData._id=createNewContactId();
+  else
+  addrBookData._id=id;
+  setContactData(addrBookData);
+  return addrBookData;
+}
+
+const setContactData = (addrBookData)=>{
+  try {
+    addrBookData.fullName = contactObj._fullname;
+    addrBookData.phoneNum = contactObj._phoneNum;
+    addrBookData.address=contactObj._address;
+    addrBookData.city=contactObj._city;
+    addrBookData.state=contactObj._state;
+    addrBookData.zipCode=contactObj._zipCode;
+ }catch(e){
+     alert(e);
+ }
+ alert(addrBookData.toString());
+};
+
+//creating a id
+const createNewContactId=()=>
+{
+  let conatctId=localStorage.getItem("ContactId");
+  conatctId=!conatctId ? 1:(parseInt(conatctId)+1).toString();
+  localStorage.setItem("ContactId",conatctId);
+  return conatctId;
+}
+
 //creating address book 
 const createAddrBook=() =>
 {
@@ -140,6 +217,12 @@ const setTextValue=(id,value) =>
 {
     const element=document.querySelector(id);
     element.textContent=value;
+}
+
+const setValue=(id,value)=>
+{
+    const element = document.querySelector(id);
+    element.value=value;
 }
 
 //resetting the form

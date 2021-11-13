@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     addrBookList=getAddressBookFromLocalStorage();
     document.querySelector(".addr-count").textContent=addrBookList.length;
     createInnerHtml();
+    localStorage.removeItem('editContact');
 });
 
 //getting the data from local storage
@@ -29,8 +30,8 @@ createInnerHtml = () => {
             <td>${addrBookData._zipCode}</td>
             <td>${addrBookData._phoneNum}</td>
             <td>
-                <img id="${addrBookData._fullName}" src="../assets/delete-black-18dp.svg" alt="delete icon" onclick="remove(this)">
-                <img id="${addrBookData._fullName}" src="../assets/create-black-18dp.svg" alt="create icon">
+                <img id="${addrBookData._id}" src="../assets/delete-black-18dp.svg" alt="delete icon" onclick="remove(this)">
+                <img id="${addrBookData._id}" src="../assets/create-black-18dp.svg" alt="create icon" onclick="update(this)">
             </td>
         </tr>
         `;
@@ -38,15 +39,23 @@ createInnerHtml = () => {
     }
 }
 
-//delete operation 
 const remove= (node) =>
 {
-  let addrBookData=addrBookList.find(contact => contact._fullName == node.id);
+  let addrBookData=addrBookList.find(contact => contact._id == node.id);
   if(!addrBookData) return ;
-  const index= addrBookList.map(contact => contact._fullName)
-        .indexOf(addrBookData._fullName);
+  const index= addrBookList.map(contact => contact._id)
+  .indexOf(addrBookData._id);
   addrBookList.splice(index,1);
   localStorage.setItem("AddressBookList",JSON.stringify(addrBookList));
   document.querySelector(".addr-count").textContent=addrBookList.length;
   createInnerHtml();
+}
+
+//update operation
+const update=(node)=>
+{
+    let addrBookData=addrBookList.find(contact=>contact._id==node.id)
+    if(!addrBookData) return;
+    localStorage.setItem('editContact',JSON.stringify(addrBookData));
+    window.location.replace(site_Properties.add_contact);
 }
